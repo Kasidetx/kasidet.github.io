@@ -1,0 +1,1683 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="รายงานการเรียนรู้รายสัปดาห์ Lead Developer วันที่ 16–20 พฤศจิกายน 2569 พร้อมบันทึก CB Mobile Buy Market Workflow">
+  <meta name="theme-color" content="#ffffff">
+  <title>Weekly Report · Week 2 | 16–20 พฤศจิกายน 2569</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;450;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --ink: #121a2b;
+      --body: #475266;
+      --muted: #7a8496;
+      --blue: #2355eb;
+      --border: #e6eaf1;
+      --soft: #f6f8fc;
+      --yellow: #fff9e9;
+      --orange: #d97706;
+      --sidebar: 268px;
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 30px
+    }
+
+    body {
+      margin: 0;
+      background: #fff;
+      color: var(--body);
+      font-family: 'Inter', 'IBM Plex Sans Thai', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      font-size: 15px;
+      line-height: 1.8
+    }
+
+    ::selection {
+      background: #dbe5ff;
+      color: var(--ink)
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none
+    }
+
+    button {
+      font: inherit
+    }
+
+    strong,
+    b {
+      color: var(--ink);
+      font-weight: 700
+    }
+
+    .layout {
+      max-width: 1390px;
+      margin: auto;
+      padding: 54px 44px 120px;
+      display: grid;
+      grid-template-columns: var(--sidebar) minmax(0, 1fr);
+      gap: 76px
+    }
+
+    .sidebar {
+      align-self: start;
+      position: sticky;
+      top: 44px;
+      padding-bottom: 20px
+    }
+
+    .identity {
+      margin: 0 0 27px
+    }
+
+    .identity-title {
+      font-size: 16px;
+      font-weight: 800;
+      line-height: 1.5;
+      color: var(--ink)
+    }
+
+    .identity-description {
+      margin: 2px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.7
+    }
+
+    .week-label {
+      font-size: 12px;
+      letter-spacing: .12em;
+      font-weight: 700;
+      color: #69758a;
+      margin-bottom: 5px
+    }
+
+    .week-date {
+      font-size: 20px;
+      font-weight: 800;
+      line-height: 1.45;
+      color: var(--ink);
+      letter-spacing: -.02em
+    }
+
+    .status {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      color: #ad5d09;
+      font-weight: 600;
+      font-size: 12px;
+      background: var(--yellow);
+      border-radius: 22px;
+      padding: 8px 12px;
+      margin: 16px 0 36px;
+      line-height: 1.5
+    }
+
+    .status i {
+      width: 10px;
+      height: 10px;
+      background: #f59e0b;
+      border-radius: 50%;
+      display: block;
+      flex: none
+    }
+
+    .nav {
+      border-left: 1px solid #dde3eb;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      padding: 1px 0
+    }
+
+    .nav a {
+      font-size: 13.5px;
+      color: var(--muted);
+      padding: 9px 16px 9px 17px;
+      margin-left: -1px;
+      border-left: 2px solid transparent;
+      transition: color .2s, border-color .2s, background .2s
+    }
+
+    .nav a:hover,
+    .nav a.active {
+      color: var(--blue);
+      border-left-color: var(--blue);
+      background: linear-gradient(90deg, #f5f8ff 0, transparent 72%)
+    }
+
+    .source {
+      font-size: 11.5px;
+      color: var(--muted);
+      line-height: 1.9;
+      margin-top: 130px;
+      max-width: 270px
+    }
+
+    .main {
+      max-width: 930px;
+      min-width: 0
+    }
+
+    .eyebrow {
+      color: var(--blue);
+      font-size: 14px;
+      font-weight: 700;
+      margin: 0 0 13px
+    }
+
+    .hero h1 {
+      font-size: clamp(34px, 3.2vw, 49px);
+      font-weight: 800;
+      line-height: 1.2;
+      letter-spacing: -.044em;
+      margin: 0 0 23px;
+      color: var(--ink)
+    }
+
+    .hero .lead {
+      font-size: 18px;
+      line-height: 1.95;
+      letter-spacing: -.015em;
+      margin: 0;
+      color: #505a6d
+    }
+
+    .metrics {
+      border-top: 2px solid #111827;
+      margin: 34px 0 0;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr)
+    }
+
+    .metric {
+      padding: 18px 18px 7px 0;
+      min-width: 0
+    }
+
+    .metric+.metric {
+      border-left: 1px solid var(--border);
+      padding-left: 22px
+    }
+
+    .metric .big {
+      font-size: 40px;
+      line-height: 1.23;
+      font-weight: 800;
+      letter-spacing: -.055em;
+      color: var(--ink)
+    }
+
+    .metric .unit {
+      font-size: 16px;
+      color: var(--muted);
+      margin-left: 4px;
+      font-weight: 500;
+      letter-spacing: -.02em
+    }
+
+    .metric .label {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--ink);
+      margin-top: 7px;
+      line-height: 1.6
+    }
+
+    .metric .note {
+      font-size: 11.5px;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-top: 2px
+    }
+
+    .section {
+      border-top: 1px solid var(--border);
+      padding-top: 49px;
+      margin-top: 58px;
+      scroll-margin-top: 25px
+    }
+
+    .section-number {
+      font-size: 13px;
+      letter-spacing: .07em;
+      color: var(--blue);
+      font-weight: 800;
+      margin-bottom: 1px
+    }
+
+    h2 {
+      font-size: 29px;
+      line-height: 1.4;
+      letter-spacing: -.035em;
+      color: var(--ink);
+      margin: 0 0 8px;
+      font-weight: 800
+    }
+
+    .section-subtitle {
+      color: var(--muted);
+      font-size: 15px;
+      margin: 0 0 27px;
+      line-height: 1.8
+    }
+
+    h3 {
+      color: var(--ink);
+      font-size: 19px;
+      line-height: 1.55;
+      margin: 0 0 8px;
+      font-weight: 750
+    }
+
+    p {
+      margin: 0 0 12px
+    }
+
+    .timeline {
+      position: relative
+    }
+
+    .day {
+      display: grid;
+      grid-template-columns: 126px 1fr;
+      gap: 25px;
+      margin-bottom: 31px
+    }
+
+    .day-date {
+      text-align: right;
+      padding-top: 3px
+    }
+
+    .day-date .dayname {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--ink)
+    }
+
+    .day-date .shortdate {
+      font-size: 12px;
+      color: var(--muted)
+    }
+
+    .day-content {
+      border-left: 2px solid #e6ebf7;
+      position: relative;
+      padding: 0 0 1px 28px;
+      min-width: 0
+    }
+
+    .day-content:before {
+      content: "";
+      position: absolute;
+      left: -7px;
+      top: 9px;
+      width: 11px;
+      height: 11px;
+      border: 2px solid var(--blue);
+      background: #fff;
+      border-radius: 50%
+    }
+
+    .day h3 {
+      font-size: 17px;
+      margin: 0 0 8px
+    }
+
+    .day p {
+      font-size: 14px;
+      line-height: 1.92;
+      margin: 0;
+      color: #566176
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-top: 12px
+    }
+
+    .tag {
+      border: 1px solid #e0e7f6;
+      background: #f9fbff;
+      color: #50678e;
+      font-size: 11.5px;
+      padding: 3px 10px;
+      border-radius: 5px;
+      line-height: 1.6
+    }
+
+    .insight {
+      background: #f7f9fd;
+      padding: 22px 24px;
+      border-left: 3px solid var(--blue);
+      margin-top: 9px;
+      border-radius: 0 9px 9px 0
+    }
+
+    .insight .overline {
+      color: var(--blue);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .09em;
+      margin-bottom: 3px
+    }
+
+    .insight p {
+      font-size: 14px;
+      line-height: 1.9;
+      margin: 0
+    }
+
+    .learning-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px
+    }
+
+    .learning-card {
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      padding: 22px;
+      background: #fff;
+      min-width: 0
+    }
+
+    .learning-card .label {
+      font-size: 12px;
+      color: var(--blue);
+      font-weight: 800;
+      letter-spacing: .06em;
+      margin-bottom: 6px
+    }
+
+    .learning-card h3 {
+      font-size: 17px
+    }
+
+    .learning-card p {
+      font-size: 13px;
+      line-height: 1.85;
+      color: #5c6779;
+      margin: 0
+    }
+
+    .meter-panel {
+      border-radius: 9px;
+      background: var(--soft);
+      padding: 21px 24px;
+      margin-top: 17px
+    }
+
+    .meter-heading {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      color: var(--ink);
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 11px
+    }
+
+    .meter-heading .percent {
+      font-weight: 800;
+      color: var(--blue)
+    }
+
+    .meter {
+      width: 100%;
+      height: 9px;
+      background: #e3e9f2;
+      border-radius: 30px;
+      overflow: hidden
+    }
+
+    .meter span {
+      display: block;
+      height: 100%;
+      width: 73.913%;
+      background: var(--blue);
+      border-radius: 30px
+    }
+
+    .meter-note {
+      font-size: 12px;
+      margin: 11px 0 0;
+      color: var(--muted)
+    }
+
+    .flow-strip {
+      display: flex;
+      align-items: stretch;
+      gap: 5px;
+      justify-content: space-between;
+      background: var(--soft);
+      padding: 13px;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      margin: 19px 0 23px;
+      overflow-x: auto
+    }
+
+    .flow-pill {
+      background: #fff;
+      min-width: 115px;
+      text-align: center;
+      padding: 12px 8px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--ink);
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1.5;
+      flex: 1
+    }
+
+    .flow-pill small {
+      font-size: 10px;
+      display: block;
+      color: var(--muted);
+      font-weight: 500;
+      margin-top: 2px
+    }
+
+    .flow-arrow {
+      align-self: center;
+      color: #98a4b6;
+      font-size: 22px;
+      flex: none;
+      padding: 0 1px
+    }
+
+    .technical-note {
+      border-left: 3px solid #ecb95a;
+      background: #fffbf1;
+      padding: 13px 17px;
+      font-size: 12px;
+      line-height: 1.85;
+      color: #82632a;
+      border-radius: 0 6px 6px 0;
+      margin: 13px 0 27px
+    }
+
+    .technical-note b {
+      color: #7a4b0c
+    }
+
+    .phase {
+      margin: 31px 0 13px;
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      color: var(--ink);
+      font-weight: 800;
+      font-size: 14px
+    }
+
+    .phase:after {
+      content: "";
+      height: 1px;
+      background: var(--border);
+      flex: 1
+    }
+
+    .phase:first-of-type {
+      margin-top: 18px
+    }
+
+    .steps {
+      display: flex;
+      flex-direction: column;
+      gap: 11px
+    }
+
+    .step {
+      display: grid;
+      grid-template-columns: 42px minmax(0, 1fr);
+      gap: 15px;
+      padding: 19px 20px;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      break-inside: avoid
+    }
+
+    .step-number {
+      width: 36px;
+      height: 36px;
+      border: 1px solid #cad7fa;
+      border-radius: 9px;
+      color: var(--blue);
+      font-weight: 800;
+      font-size: 13px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #f6f8ff
+    }
+
+    .step h4 {
+      font-size: 15px;
+      color: var(--ink);
+      font-weight: 800;
+      margin: 0;
+      line-height: 1.65
+    }
+
+    .actor {
+      font-size: 10.5px;
+      font-weight: 700;
+      color: var(--blue);
+      letter-spacing: .035em;
+      margin-bottom: 4px
+    }
+
+    .step p {
+      margin: 7px 0 0;
+      color: #596578;
+      font-size: 12.8px;
+      line-height: 1.85
+    }
+
+    .step ul {
+      padding-left: 19px;
+      margin: 8px 0 0;
+      font-size: 12.8px;
+      color: #596578;
+      line-height: 1.88
+    }
+
+    .step li {
+      padding-left: 2px;
+      margin-bottom: 2px
+    }
+
+    .step ul li::marker {
+      color: #8999b2
+    }
+
+    .step .detail {
+      font-size: 12px;
+      color: #7a8496;
+      margin-top: 10px;
+      padding-top: 9px;
+      border-top: 1px dashed var(--border)
+    }
+
+    code {
+      font-family: 'SFMono-Regular', Consolas, monospace;
+      font-size: .91em;
+      background: #f1f4fa;
+      padding: 2px 5px;
+      border-radius: 4px;
+      color: #284989;
+      overflow-wrap: anywhere
+    }
+
+    .optional {
+      background: #fafbff;
+      border-style: dashed;
+      border-color: #cddaf6
+    }
+
+    .glossary {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0 30px
+    }
+
+    .term {
+      border-bottom: 1px solid var(--border);
+      padding: 18px 0
+    }
+
+    .term dt {
+      color: var(--ink);
+      font-size: 15px;
+      font-weight: 800;
+      margin-bottom: 6px
+    }
+
+    .term dd {
+      margin: 0;
+      font-size: 13px;
+      line-height: 1.9;
+      color: #5b6678
+    }
+
+    .lesson-list {
+      display: flex;
+      flex-direction: column;
+      gap: 17px
+    }
+
+    .lesson {
+      display: grid;
+      grid-template-columns: 32px 1fr;
+      gap: 13px
+    }
+
+    .lesson-num {
+      color: var(--blue);
+      font-size: 15px;
+      font-weight: 800
+    }
+
+    .lesson h3 {
+      font-size: 16px;
+      margin: 0 0 4px
+    }
+
+    .lesson p {
+      font-size: 13.5px;
+      line-height: 1.85;
+      margin: 0
+    }
+
+    .next {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px
+    }
+
+    .next-item {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      padding: 15px 17px;
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      color: #515d70;
+      font-size: 13.5px
+    }
+
+    .next-dot {
+      width: 8px;
+      height: 8px;
+      background: #d4def5;
+      border: 2px solid var(--blue);
+      border-radius: 50%;
+      flex: none;
+      margin-top: 9px
+    }
+
+    .endnote {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 34px;
+      line-height: 1.9
+    }
+
+    .report-footer {
+      padding-top: 25px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      font-size: 11.5px;
+      margin-top: 45px
+    }
+
+    .print-btn {
+      border: 1px solid #d9e0ea;
+      background: white;
+      padding: 6px 12px;
+      color: #5d6779;
+      border-radius: 6px;
+      cursor: pointer;
+      display: inline-flex;
+      gap: 6px;
+      align-items: center;
+      font-size: 11.5px
+    }
+
+    .print-btn:hover {
+      border-color: var(--blue);
+      color: var(--blue)
+    }
+
+    @media (min-width:1200px) {
+      .hero .lead {
+        max-width: 940px
+      }
+    }
+
+    @media (max-width:1100px) {
+      .layout {
+        gap: 40px;
+        padding: 40px 28px 80px;
+        grid-template-columns: 225px minmax(0, 1fr)
+      }
+
+      .metrics .big {
+        font-size: 36px
+      }
+
+      .hero .lead {
+        font-size: 16px
+      }
+
+      .hero h1 {
+        font-size: 38px
+      }
+
+      .source {
+        margin-top: 80px
+      }
+    }
+
+    @media (max-width:780px) {
+      .layout {
+        display: block;
+        padding: 25px 21px 65px
+      }
+
+      .sidebar {
+        position: static;
+        padding-bottom: 8px
+      }
+
+      .identity {
+        margin-bottom: 12px
+      }
+
+      .identity-description {
+        font-size: 12px
+      }
+
+      .week-label {
+        font-size: 11px
+      }
+
+      .week-date {
+        font-size: 18px
+      }
+
+      .status {
+        max-width: 260px;
+        margin: 11px 0 19px
+      }
+
+      .nav {
+        border: 0;
+        flex-direction: row;
+        white-space: nowrap;
+        overflow-x: auto;
+        gap: 6px;
+        scrollbar-width: thin;
+        padding: 0 0 11px;
+        margin-bottom: 24px
+      }
+
+      .nav a {
+        padding: 6px 11px;
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        margin: 0;
+        background: #fff;
+        font-size: 12px
+      }
+
+      .nav a.active {
+        border: 1px solid #a9befb;
+        background: #f5f8ff
+      }
+
+      .source {
+        display: none
+      }
+
+      .hero h1 {
+        font-size: 34px
+      }
+
+      .hero .lead {
+        font-size: 15.5px
+      }
+
+      .eyebrow {
+        font-size: 12.5px
+      }
+
+      .metric .big {
+        font-size: 33px
+      }
+
+      .metric .label {
+        font-size: 11.5px
+      }
+
+      .metric .note {
+        font-size: 10.5px
+      }
+
+      .metric+.metric {
+        padding-left: 12px
+      }
+
+      .metric {
+        padding-right: 8px
+      }
+
+      .section {
+        margin-top: 41px;
+        padding-top: 35px
+      }
+
+      h2 {
+        font-size: 25px
+      }
+
+      .day {
+        grid-template-columns: 84px 1fr;
+        gap: 14px
+      }
+
+      .day-content {
+        padding-left: 18px
+      }
+
+      .day h3 {
+        font-size: 15px
+      }
+
+      .day p {
+        font-size: 13px
+      }
+
+      .glossary {
+        gap: 0 16px
+      }
+    }
+
+    @media (max-width:560px) {
+      .layout {
+        padding: 22px 17px 65px
+      }
+
+      .hero h1 {
+        font-size: 29px;
+        line-height: 1.3
+      }
+
+      .hero .lead {
+        font-size: 14px
+      }
+
+      .metrics {
+        grid-template-columns: repeat(3, minmax(0, 1fr))
+      }
+
+      .metric .big {
+        font-size: 30px
+      }
+
+      .metric .unit {
+        font-size: 11px
+      }
+
+      .metric .note {
+        font-size: 10px
+      }
+
+      .metric .label {
+        font-size: 11px
+      }
+
+      .day {
+        grid-template-columns: 1fr;
+        gap: 7px;
+        margin-bottom: 24px
+      }
+
+      .day-date {
+        text-align: left;
+        display: flex;
+        gap: 8px;
+        align-items: baseline
+      }
+
+      .day-date .shortdate {
+        font-size: 12px
+      }
+
+      .day-content {
+        margin-left: 6px;
+        padding-left: 17px
+      }
+
+      .learning-grid,
+      .glossary {
+        grid-template-columns: 1fr
+      }
+
+      .learning-card {
+        padding: 17px
+      }
+
+      .flow-pill {
+        min-width: 99px
+      }
+
+      .step {
+        grid-template-columns: 34px 1fr;
+        gap: 9px;
+        padding: 15px 12px
+      }
+
+      .step-number {
+        width: 30px;
+        height: 30px;
+        font-size: 11px
+      }
+
+      .step h4 {
+        font-size: 14px
+      }
+
+      .step ul,
+      .step p {
+        font-size: 12px
+      }
+
+      .report-footer {
+        align-items: flex-start;
+        flex-direction: column
+      }
+    }
+
+    @media print {
+      @page {
+        size: A4;
+        margin: 15mm 14mm
+      }
+
+      html {
+        scroll-behavior: auto
+      }
+
+      body {
+        font-size: 11px;
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact
+      }
+
+      .layout {
+        display: block;
+        max-width: 100%;
+        padding: 0
+      }
+
+      .sidebar {
+        display: none
+      }
+
+      .main {
+        max-width: 100%
+      }
+
+      .hero h1 {
+        font-size: 29px
+      }
+
+      .hero .lead {
+        font-size: 12px;
+        line-height: 1.7
+      }
+
+      .metrics {
+        margin-top: 22px
+      }
+
+      .metric .big {
+        font-size: 27px
+      }
+
+      .section {
+        margin-top: 27px;
+        padding-top: 22px
+      }
+
+      h2 {
+        font-size: 21px
+      }
+
+      .section-subtitle {
+        font-size: 11.5px;
+        margin-bottom: 15px
+      }
+
+      .day {
+        margin-bottom: 14px
+      }
+
+      .day p {
+        font-size: 11.5px
+      }
+
+      .day h3 {
+        font-size: 13px
+      }
+
+      .learning-card,
+      .step {
+        break-inside: avoid
+      }
+
+      .step {
+        padding: 11px 12px;
+        gap: 9px;
+        margin-bottom: 0
+      }
+
+      .step p,
+      .step ul {
+        font-size: 10.8px
+      }
+
+      .step h4 {
+        font-size: 12px
+      }
+
+      .phase {
+        margin-top: 17px
+      }
+
+      .glossary {
+        grid-template-columns: repeat(2, 1fr)
+      }
+
+      .term {
+        padding: 11px 0
+      }
+
+      .term dt {
+        font-size: 12px
+      }
+
+      .term dd {
+        font-size: 10.8px
+      }
+
+      .flow-strip {
+        overflow: visible
+      }
+
+      .flow-pill {
+        min-width: 0
+      }
+
+      .print-btn {
+        display: none
+      }
+
+      .report-footer {
+        font-size: 9px
+      }
+
+      a {
+        color: inherit
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="layout">
+    <aside class="sidebar" aria-label="เมนูนำทางรายงาน">
+      <div class="identity">
+        <div class="identity-title">Lead Developer</div>
+        <p class="identity-description">บันทึกการเรียนรู้ระบบทอง<br>ECGold · Classic Gold · CB Mobile</p>
+      </div>
+      <div class="week-label">WEEKLY REPORT · WEEK 2</div>
+      <div class="week-date">16–20 พฤศจิกายน 2026</div>
+      <div class="status"><i></i><span>สถานะรวม: อยู่ระหว่างเรียนรู้</span></div>
+      <nav class="nav">
+        <a href="#summary" class="active">สรุปสัปดาห์</a>
+        <a href="#daily">ทำอะไรในแต่ละวัน</a>
+        <a href="#learning">สิ่งที่ได้เรียนรู้</a>
+        <a href="#workflow">Workflow CB Mobile</a>
+        <a href="#glossary">คำศัพท์สำคัญ</a>
+        <a href="#reflection">ปัญหาและบทเรียน</a>
+        <a href="#next">สิ่งที่ต้องทำต่อ</a>
+      </nav>
+      <p class="source">ที่มา: บันทึกการเรียนรู้รายวัน<br>16–20 พ.ย. 2569 และโน้ต Workflow ขาซื้อราคาตลาดของ CB
+        Mobile<br>เรียบเรียงเพื่อใช้ทบทวนและรายงานความคืบหน้า</p>
+    </aside>
+
+    <main class="main">
+      <header class="hero" id="summary">
+        <p class="eyebrow">สรุปสัปดาห์</p>
+        <h1>เริ่มต้นทำความเข้าใจระบบทองใหม่<br>และลงลึก Workflow ขาซื้อ CB Mobile</h1>
+        <p class="lead">สัปดาห์นี้เป็นจุดเปลี่ยนของการฝึกงาน จากการพยายามทำ <b>Audit Logs</b>
+          ทั้งที่ยังไม่เข้าใจภาพรวมระบบ <b>ECGold (MM, Trader, Desktop)</b> มาสู่การ <b>ปรับวิธีคิด กล้าถาม
+            และทบทวนพื้นฐานตั้งแต่ต้น</b> ก่อนโฟกัสกับ <b>Classic Gold</b> และ <b>Workflow ขาซื้อราคาตลาดของ CB
+            Mobile</b> พร้อมฝึกตอบเคสเมื่อระบบทำงานล้มเหลวและทบทวนหลักการเขียนโปรแกรมเพื่อทำโจทย์ 2.2</p>
+        <div class="metrics" aria-label="ตัวเลขสรุปสัปดาห์">
+          <div class="metric">
+            <div><span class="big">5</span><span class="unit">วัน</span></div>
+            <div class="label">บันทึกการเรียนรู้</div>
+            <div class="note">จันทร์–ศุกร์ 16–20 พ.ย.</div>
+          </div>
+          <div class="metric">
+            <div><span class="big">34</span><span class="unit">เคส</span></div>
+            <div class="label">ตอบกรณี Fail แล้ว</div>
+            <div class="note">ตามบันทึกวันศุกร์</div>
+          </div>
+          <div class="metric">
+            <div><span class="big">12</span><span class="unit">เคส</span></div>
+            <div class="label">ยังคงเหลือ</div>
+            <div class="note">ต่อยอดการวิเคราะห์ Workflow</div>
+          </div>
+        </div>
+      </header>
+
+      <section class="section" id="daily">
+        <div class="section-number">01</div>
+        <h2>ทำอะไรในแต่ละวัน</h2>
+        <p class="section-subtitle">งานหลัก ความเข้าใจใหม่ และประเด็นที่ได้ทบทวนในแต่ละวัน</p>
+        <div class="timeline">
+          <article class="day">
+            <div class="day-date">
+              <div class="dayname">จันทร์</div>
+              <div class="shortdate">16 พ.ย.</div>
+            </div>
+            <div class="day-content">
+              <h3>ปรับ Mindset และกลับไปเริ่มเรียนรู้ระบบทองจากศูนย์</h3>
+              <p>ตระหนักว่าตนเองยังไม่เข้าใจระบบ ECGold โดยเฉพาะฝั่ง <b>MM, Trader และ Desktop</b> อย่างชัดเจน
+                แต่ยังพยายามทำงาน Audit Logs ต่อ จนได้รับคำแนะนำจากพี่ไมค์
+                จึงเห็นว่าการไม่ถามตั้งแต่ต้นทำให้เสียเวลาไปมากในสัปดาห์ก่อน
+                วันนี้จึงเริ่มศึกษาพื้นฐานเรื่องทองและปรับวิธีคิด การสื่อสาร และความกล้าที่จะถามเมื่อไม่เข้าใจ</p>
+              <div class="tags"><span class="tag">Mindset</span><span class="tag">ECGold</span><span class="tag">Audit
+                  Logs</span></div>
+            </div>
+          </article>
+          <article class="day">
+            <div class="day-date">
+              <div class="dayname">อังคาร</div>
+              <div class="shortdate">17 พ.ย.</div>
+            </div>
+            <div class="day-content">
+              <h3>ศึกษา Place Order, Limit Order และ Mini Order</h3>
+              <p>ทำความเข้าใจรูปแบบคำสั่งซื้อขายใน <b>Classic Gold</b> โดยจดบันทึกเงื่อนไขที่ออเดอร์ Limit ขนาดน้อยกว่า
+                <b>5 บาทกรัม</b> จะเข้าสู่กระบวนการส่งคำสั่งออก และในกรณีซื้อขาย ณ ราคาปัจจุบัน จะพิจารณา <b>Spread ตาม
+                  Level ของลูกค้า</b>
+              </p>
+              <div class="tags"><span class="tag">Classic Gold</span><span class="tag">Order Types</span><span
+                  class="tag">Spread</span></div>
+            </div>
+          </article>
+          <article class="day">
+            <div class="day-date">
+              <div class="dayname">พุธ</div>
+              <div class="shortdate">18 พ.ย.</div>
+            </div>
+            <div class="day-content">
+              <h3>เปลี่ยนมาศึกษา Workflow ของ CB Mobile</h3>
+              <p>พักการศึกษาระบบฝั่ง CL ชั่วคราว เพื่อทำความเข้าใจลำดับการทำงานของ <b>CB Mobile</b> ให้แน่นก่อน อ่าน
+                <b>Roadmap การฝึกงาน</b> และทดลองไล่ตาม Flow การทำรายการ <b>ขาซื้อ</b>
+                เพื่อมองเห็นการเชื่อมโยงระหว่างลูกค้า Broker Payment และระบบที่เกี่ยวข้อง
+              </p>
+              <div class="tags"><span class="tag">CB Mobile</span><span class="tag">Roadmap</span><span class="tag">Buy
+                  Flow</span></div>
+            </div>
+          </article>
+          <article class="day">
+            <div class="day-date">
+              <div class="dayname">พฤหัสบดี</div>
+              <div class="shortdate">19 พ.ย.</div>
+            </div>
+            <div class="day-content">
+              <h3>ตรวจความครบถ้วนของ Flow และเริ่มจับคู่กับโค้ด</h3>
+              <p>ตรวจสอบว่า Workflow ที่ทำไว้ครอบคลุมส่วนต่าง ๆ หรือไม่ โดยตั้งเป้าตอบ Flow <b>15 ขั้นตอนก่อน 16.00
+                  น.</b> พร้อมอ่านโค้ดเพื่อทำความเข้าใจการทำงานจริง และทดลองเขียน Workflow ขาซื้อของ CB Mobile ด้วยตนเอง
+                ส่งผลให้เข้าใจคำศัพท์ในระบบมากขึ้น</p>
+              <div class="tags"><span class="tag">Flow Validation</span><span class="tag">Code Reading</span><span
+                  class="tag">Terminology</span></div>
+            </div>
+          </article>
+          <article class="day">
+            <div class="day-date">
+              <div class="dayname">ศุกร์</div>
+              <div class="shortdate">20 พ.ย.</div>
+            </div>
+            <div class="day-content">
+              <h3>วิเคราะห์ Fail Case และทำโจทย์โปรแกรมมิง 2.2</h3>
+              <p>ตอบกรณีระบบทำงาน <b>Fail แล้ว 34 ข้อ</b> และเหลืออีก <b>12 ข้อ</b> พร้อมทำโจทย์ 2.2
+                โดยก่อนลงมือได้ทบทวนว่า <b>while</b> หรือ <b>for</b> เหมาะกับลักษณะงานมากกว่า
+                รวมถึงวิธีจัดเก็บและเรียกใช้ข้อมูลจาก <b>array</b> และการใช้ <b>function</b>
+                เพื่อให้เลือกแนวทางได้อย่างมีเหตุผล แม้โจทย์จะไม่ซับซ้อน</p>
+              <div class="tags"><span class="tag">Fail Cases</span><span class="tag">Array / Function / Loop</span><span
+                  class="tag">Exercise 2.2</span></div>
+            </div>
+          </article>
+        </div>
+        <div class="insight">
+          <div class="overline">KEY TAKEAWAY</div>
+          <p><b>การถามให้เข้าใจตั้งแต่ต้นสำคัญกว่าการพยายามทำงานต่อโดยไม่มีภาพรวม</b> เพราะช่วยลดการทำงานผิดทิศทาง
+            และทำให้การอ่านโค้ดหรือไล่ Workflow มีเป้าหมายชัดเจนขึ้น</p>
+        </div>
+      </section>
+
+      <section class="section" id="learning">
+        <div class="section-number">02</div>
+        <h2>สิ่งที่ได้เรียนรู้</h2>
+        <p class="section-subtitle">สรุปประเด็นหลักจากการศึกษา ทั้งด้านระบบธุรกิจและการพัฒนาโปรแกรม</p>
+        <div class="learning-grid">
+          <article class="learning-card">
+            <div class="label">01 · BUSINESS LOGIC</div>
+            <h3>คำสั่งซื้อขายทอง</h3>
+            <p>รู้จัก Place Order, Limit Order และ Mini Order ใน Classic Gold รวมถึงผลของขนาดออเดอร์ ราคาตลาด และ Spread
+              ตามระดับลูกค้า</p>
+          </article>
+          <article class="learning-card">
+            <div class="label">02 · SYSTEM WORKFLOW</div>
+            <h3>CB Mobile Buy Market</h3>
+            <p>เริ่มเชื่อมภาพจากการยืนยันคำสั่งของลูกค้า ไปยัง Broker, Queue, Payment, Portfolio, Trading Desk และ Back
+              Office</p>
+          </article>
+          <article class="learning-card">
+            <div class="label">03 · BACKEND CONCEPTS</div>
+            <h3>สถานะและความเสี่ยง</h3>
+            <p>ทำความเข้าใจ Token, Request Validation, Redis Lock, Exposure, Outstanding, Hedging, Settle
+              และความแตกต่างของ License แต่ละบริษัท</p>
+          </article>
+          <article class="learning-card">
+            <div class="label">04 · PROGRAMMING</div>
+            <h3>การเลือกใช้โครงสร้างโค้ด</h3>
+            <p>ทบทวน array, function และ loop โดยเปรียบเทียบ while กับ for เพื่อเลือกให้เหมาะกับโจทย์
+              พร้อมฝึกหาข้อมูลประกอบการตัดสินใจ</p>
+          </article>
+        </div>
+        <div class="meter-panel">
+          <div class="meter-heading"><span>ความคืบหน้าการตอบ Fail Case</span><span class="percent">34 / 46</span></div>
+          <div class="meter" aria-label="ตอบเคส 34 จาก 46 เคส"><span></span></div>
+          <p class="meter-note">นับจาก 34 ข้อที่ตอบแล้วและ 12 ข้อที่เหลือ ณ วันที่ 20 พ.ย. 2569 (ประมาณ 74%)</p>
+        </div>
+      </section>
+
+      <section class="section" id="workflow">
+        <div class="section-number">03</div>
+        <h2>Workflow CB Mobile — ขาซื้อราคาตลาด</h2>
+        <p class="section-subtitle">เรียบเรียงจากโน้ตความเข้าใจ โดยคงลำดับ 1–15 และขั้นตอนเสริม 12a ตามที่จดไว้</p>
+        <div class="flow-strip" aria-label="ภาพรวมการไหลของคำสั่งซื้อ">
+          <div class="flow-pill">Customer App<small>เริ่มคำสั่งซื้อ</small></div>
+          <div class="flow-arrow">›</div>
+          <div class="flow-pill">Broker<small>ตรวจสอบ / เข้าคิว</small></div>
+          <div class="flow-arrow">›</div>
+          <div class="flow-pill">Payment<small>หักเงิน ODD</small></div>
+          <div class="flow-arrow">›</div>
+          <div class="flow-pill">MM + Back Office<small>จัดการสถานะ / เอกสาร</small></div>
+        </div>
+        <div class="technical-note"><b>ขอบเขต:</b> ลำดับด้านล่างเป็นบันทึกการศึกษาของผู้จัดทำ
+          ไม่ใช่ข้อกำหนดระบบที่ยืนยันแล้ว ควรตรวจเทียบกับโค้ดจริงและสอบถามทีมเกี่ยวกับสถานะ ความสำเร็จ/ล้มเหลว
+          และเงื่อนไขราย License ก่อนนำไปใช้อ้างอิงเชิงเทคนิค</div>
+
+        <div class="phase">ช่วงที่ 1 · ลูกค้าสร้างและยืนยันคำสั่งซื้อ</div>
+        <div class="steps">
+          <article class="step">
+            <div class="step-number">01</div>
+            <div>
+              <div class="actor">CUSTOMER APP</div>
+              <h4>เลือกสินค้าและประเภทการซื้อ</h4>
+              <p>ลูกค้าเปิดหน้า <b>Trade</b> เลือกสินค้า เช่น <code>96.5 (BG)</code> กด <b>ซื้อ</b> และเลือกคำสั่งแบบ
+                <b>ตลาด (Market)</b>
+              </p>
+            </div>
+          </article>
+          <article class="step">
+            <div class="step-number">02</div>
+            <div>
+              <div class="actor">CUSTOMER APP</div>
+              <h4>กรอกจำนวนที่ต้องการซื้อ</h4>
+              <p>เมื่อ <code>transactionType = market</code> ลูกค้าแก้ไขได้เฉพาะ <b>จำนวน</b> ไม่สามารถแก้ไข
+                <b>ราคาตลาด</b> และ <b>ราคารวม</b> โดยตรง
+              </p>
+            </div>
+          </article>
+          <article class="step">
+            <div class="step-number">03</div>
+            <div>
+              <div class="actor">CUSTOMER APP</div>
+              <h4>ยืนยันรายละเอียดภายในเวลา</h4>
+              <p>ลูกค้ากดยืนยันรายการ ตรวจสอบข้อมูลอีกครั้ง แล้วกดยืนยันรอบสุดท้าย <b>ภายใน 10 วินาที</b></p>
+            </div>
+          </article>
+        </div>
+
+        <div class="phase">ช่วงที่ 2 · Broker ตรวจสอบและประมวลผลการชำระเงิน</div>
+        <div class="steps">
+          <article class="step">
+            <div class="step-number">04</div>
+            <div>
+              <div class="actor">BROKER</div>
+              <h4>ตรวจสอบคำสั่งซื้อก่อนรับเข้าระบบ</h4>
+              <p>Broker ตรวจสอบคำขออัตโนมัติก่อนดำเนินการต่อ โดยมีหัวข้อหลักตามบันทึกดังนี้</p>
+              <ul>
+                <li><b>ตลาดและสมาชิก:</b> ตลาดเปิดอยู่หรือไม่, ตรวจสอบ Token และกำหนด <code>req.memberId</code>,
+                  ตรวจว่ามีสมาชิกจริง</li>
+                <li><b>ป้องกันคำสั่งซ้ำ:</b> เช็กคำสั่งจากลูกค้าเดียวกันในวินาทีเดียวกัน และใช้ Redis <code>SET</code>
+                  แบบ <code>NX</code> พร้อม <code>PX 1000</code> เพื่อล็อกชั่วคราว 1 วินาที</li>
+                <li><b>ความถูกต้องของ Request:</b> ตรวจ Method, Headers, Params, JSON Schema และข้อจำกัดจำนวน Request
+                </li>
+                <li><b>ราคาและวงเงิน:</b> ราคาไม่คลาดเคลื่อนเกินช่วงที่กำหนดจากราคาตลาด, แสดงราคารวมทศนิยม 2 ตำแหน่ง,
+                  ตรวจ Exposure ที่อนุญาต</li>
+                <li><b>ข้อมูลที่ต้องส่ง:</b> Buy/Sell, Purity, IMEI ของอุปกรณ์ (15 หลัก), ราคาขณะซื้อ, จำนวนที่ซื้อ และ
+                  Level ของลูกค้า CB</li>
+              </ul>
+            </div>
+          </article>
+          <article class="step">
+            <div class="step-number">05</div>
+            <div>
+              <div class="actor">BROKER</div>
+              <h4>สร้างเลขคำสั่งซื้อและส่งเข้าคิว</h4>
+              <p>สร้างหมายเลขออเดอร์ขึ้นต้นด้วย <code>B96</code> สำหรับทอง 96.5 หรือ <code>B99</code> สำหรับทอง 99
+                ตามด้วย <b>วันที่และ Serial</b> จากนั้นส่งคำสั่งซื้อเข้าคิวเพื่อรอ Payment
+                และตอบกลับแอปหนึ่งครั้งด้วยสถานะ <code>Waiting</code> โดยแอปแจ้งว่ารับคำสั่งเรียบร้อย</p>
+              <p class="detail">จุดสำคัญในบันทึก: ในขั้นนี้ยังไม่หักเงินและยังไม่บันทึกออเดอร์สำเร็จ</p>
+            </div>
+          </article>
+          <article class="step">
+            <div class="step-number">06</div>
+            <div>
+              <div class="actor">BANK & PAYMENT</div>
+              <h4>Queue Worker ติดต่อ Payment Gateway เพื่อหักเงิน</h4>
+              <p>Worker ไล่ประมวลผลคำสั่งซื้อจากคิว ติดต่อ Payment Gateway เพื่อหักเงินผ่าน <b>Online Direct Debit
+                  (ODD)</b> จากบัญชีธนาคารที่ลูกค้าผูกไว้ และบันทึกข้อมูล <b>Import</b> การรับเงินเข้าบัญชีบริษัท</p>
+              <p class="detail">ประเด็นที่ต้องระวัง: ตามโน้ต ธนาคารอาจดำเนินรายการต่อ แม้ขั้นตอนการบันทึกข้อมูล Import
+                จะล้มเหลว</p>
+            </div>
+          </article>
+          <article class="step">
+            <div class="step-number">07</div>
+            <div>
+              <div class="actor">BROKER</div>
+              <h4>บันทึกออเดอร์และสถานะหลัง Payment</h4>
+              <p>เมื่อขั้นตอนชำระเงินสำเร็จ Broker บันทึกออเดอร์โดยใช้สถานะ <b>จับคู่แล้ว</b> ส่วนกรณี Gateway
+                ไม่ตอบกลับหรือปฏิเสธ ต้องพิจารณาเส้นทางสถานะ <code>false</code> / <b>ปฏิเสธ</b> ตามเคสที่ศึกษา</p>
+            </div>
+          </article>
+          <article class="step">
+            <div class="step-number">08</div>
+            <div>
+              <div class="actor">BROKER · PORTFOLIO</div>
+              <h4>สะท้อนทองเข้าพอร์ตของลูกค้า</h4>
+              <p>เมื่อ Portfolio พร้อมใช้งาน จำนวนทองที่ลูกค้าถือครองจะเพิ่มขึ้น พร้อมปรับ
+                <b>ราคารวมและต้นทุนซื้อเฉลี่ย</b> ใหม่ตามรายการ
+              </p>
+            </div>
+          </article>
+        </div>
+
+        <div class="phase">ช่วงที่ 3 · แสดงผลและจัดการคำสั่งค้างบนโต๊ะเทรด</div>
+        <div class="steps">
+          <article class="step">
+            <div class="step-number">09</div>
+            <div>
+              <div class="actor">CUSTOMER APP</div>
+              <h4>แสดงผลคำสั่งซื้อและอัปเดตพอร์ต</h4>
+              <p>รายการแสดงสถานะ <b>จับคู่แล้ว</b> ในแอป พร้อมข้อความทำรายการสำเร็จและการรีเฟรช Portfolio</p>
+              <p class="detail">จากโน้ต: การซื้อแบบราคาตลาดไม่มี FCM Code ที่ส่งผ่าน <code>CreateTicketCBV2</code>
+                จึงไม่ใช่การแจ้งเตือนแบบ Push ในเส้นทางนี้</p>
+            </div>
+          </article>
+          <article class="step">
+            <div class="step-number">10</div>
+            <div>
+              <div class="actor">TRADING DESK · MM</div>
+              <h4>รับ Outstanding เพื่อรอจับคู่หรือ Hedging</h4>
+              <p>รายการซื้อเข้าสู่ Trading Desk โดยแสดงข้อมูลยอดรวมของคำสั่งที่ยังเปิดอยู่ (<b>Outstanding</b>)
+                ไม่ใช่รายละเอียดแยกทุกออเดอร์ และมีราคา/จำนวนสำหรับการจัดการความเสี่ยง</p>
+              <ul>
+                <li>ถ้าเชื่อม <b>Agent/Partner</b> และใช้ <code>orderMode: 'Auto'</code> ระบบสามารถส่งคำสั่ง Hedge ไปยัง
+                  Partner อัตโนมัติ</li>
+                <li>เมื่อ Partner รับ จะเกิดแถวข้อมูลสำหรับการปิดคำสั่งเพิ่มเติม; ถ้าไม่สำเร็จ รายการยังเปิดอยู่บน
+                  Trading Desk</li>
+                <li>ข้อยกเว้นตามโน้ต: <b>License ASR</b> ไม่รองรับ 99OZ และไม่เขียนข้อมูลไป Settle ในเส้นทางที่อธิบาย
+                </li>
+              </ul>
+            </div>
+          </article>
+        </div>
+
+        <div class="phase">ช่วงที่ 4 · Back Office, เอกสาร และการปิดความเสี่ยง</div>
+        <div class="steps">
+          <article class="step">
+            <div class="step-number">11</div>
+            <div>
+              <div class="actor">BACK OFFICE</div>
+              <h4>สร้าง Ticket เพื่อออกเอกสาร</h4>
+              <p>นำหมายเลขออเดอร์ไปสร้าง Ticket ที่ Back Office โดยหากไม่สำเร็จจะพยายามใหม่ <b>สูงสุด 5 รอบ</b> ห่างกัน
+                <b>30 วินาที</b> และบันทึกว่ารายการได้รับการยืนยันและชำระแล้ว
+              </p>
+              <p>ข้อมูลเอกสารที่เกี่ยวข้อง ได้แก่ ใบเสร็จ รายละเอียดรายการ ประวัติการซื้อ ใบกำกับ และเลขเอกสาร
+                โดยแสดงในรายการรับชำระฝั่ง <b>Cash Balance</b> โดยไม่ต้องให้เจ้าหน้าที่ดำเนินการด้วยมือใน Flow นี้</p>
+            </div>
+          </article>
+          <article class="step">
+            <div class="step-number">12</div>
+            <div>
+              <div class="actor">BACK OFFICE · EMAIL</div>
+              <h4>ส่งใบเสร็จผ่านอีเมล</h4>
+              <p>ใช้ Template <code>P0-01</code> สร้างเอกสาร PDF ชื่อ <b>ใบเสร็จรับเงิน.pdf</b>
+                และส่งไปยังอีเมลของลูกค้า</p>
+            </div>
+          </article>
+          <article class="step optional">
+            <div class="step-number">12a</div>
+            <div>
+              <div class="actor">TRADING DESK · MM (ขั้นตอนแยก / ตามการเลือกของเทรดเดอร์)</div>
+              <h4>เทรดเดอร์ปิดคำสั่งซื้อที่ยังเปิดอยู่</h4>
+              <p>เป็นการจัดการความเสี่ยงบน Trading Desk ไม่ใช่ขั้นตอนที่จำเป็นในเส้นทางคำสั่งซื้อของลูกค้าทุกครั้ง
+                เทรดเดอร์เลือก Outstanding และดำเนินการอย่างใดอย่างหนึ่ง</p>
+              <ul>
+                <li><b>Spot Buy:</b> Hedge ไป Supplier สร้างแถว Spot ใหม่และบันทึกข้อมูล Hedge หากใช้ License <b>BKP</b>
+                  จะสร้างแถว Supplier เพิ่มด้วย</li>
+                <li><b>Net Settle:</b> จับชนคำสั่งซื้อ–ขายและสร้างแถว Match ใหม่</li>
+                <li>ไม่แก้แถวออเดอร์เดิม แต่สร้างแถวใหม่มาหักล้างที่ราคาเดิม บันทึก Hedge สามารถแก้ไข แยก
+                  และทำเครื่องหมายสถานะการส่งได้</li>
+                <li>เมื่อใช้ License <b>LKN</b> จะส่งรายการ Hedge ไปสร้าง Ticket ฝั่ง Back Office ของ Supplier ด้วย</li>
+              </ul>
+            </div>
+          </article>
+          <article class="step">
+            <div class="step-number">13</div>
+            <div>
+              <div class="actor">BROKER · END OF DAY</div>
+              <h4>ยกยอด Outstanding ข้ามวันและรีเซ็ต Exposure</h4>
+              <p>เมื่อปิดตลาด หากยังมีรายการเปิดค้างอยู่ Broker จะสร้างข้อมูลยกยอดคงเหลือข้ามวันด้วย
+                <code>adjust: true</code> และตั้งแถวเก่าที่เกี่ยวข้องเป็น <code>active: false</code>
+                จากนั้นรีเซ็ต/ปลดล็อกวงเงิน Exposure ที่ใช้ในการซื้อ
+              </p>
+              <p class="detail">ข้อยกเว้น: License <b>WTK</b> อ้างอิง <code>exposure_reset_time</code>; ไม่ใช่กรณีที่
+                Partner เป็นผู้ปิดรายการ</p>
+            </div>
+          </article>
+          <article class="step">
+            <div class="step-number">14</div>
+            <div>
+              <div class="actor">BACK OFFICE · EMAIL</div>
+              <h4>จัดทำรายงานธุรกรรมรายวัน</h4>
+              <p>เมื่อถึงเที่ยงคืน ระบบนำรายการที่จับคู่แล้วจาก Ticket ของ Back Office มาจัดทำรายงานธุรกรรมรายวัน และส่ง
+                <b>PDF</b> ทางอีเมลด้วย Template <code>DTR01</code>
+              </p>
+              <p class="detail">ตามโน้ต: ไม่ใช้ในกรณี License <b>ASR</b></p>
+            </div>
+          </article>
+          <article class="step">
+            <div class="step-number">15</div>
+            <div>
+              <div class="actor">CUSTOMER APP</div>
+              <h4>กำหนดช่วงเวลาที่รายการยังอยู่ในแท็บ Today</h4>
+              <p>รายการจะยังแสดงในส่วน <b>Today</b> ของแอปจนถึง <b>06.00 น. ตามเวลาไทย</b> (ตรงกับ <b>23.00 น.
+                  ที่ลอนดอน</b> ในช่วงเดือนพฤศจิกายน)</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="glossary">
+        <div class="section-number">04</div>
+        <h2>คำศัพท์และแนวคิดสำคัญ</h2>
+        <p class="section-subtitle">คำศัพท์ที่พบระหว่างศึกษา ECGold, Classic Gold และ Workflow CB Mobile</p>
+        <dl class="glossary">
+          <div class="term">
+            <dt>ASR · Ausiris</dt>
+            <dd>ตัวย่อที่ใช้เรียก Ausiris ในบริบทของระบบและเงื่อนไขตาม License</dd>
+          </div>
+          <div class="term">
+            <dt>Settle · Settlement</dt>
+            <dd>กระบวนการปิดรายการคำสั่ง และส่งมอบเงินกับทองให้ผู้ซื้อและผู้ขายตามธุรกรรม</dd>
+          </div>
+          <div class="term">
+            <dt>Agent Integration</dt>
+            <dd>การเชื่อมต่อ Agent/Partner ที่ช่วยทำ Auto Match Order หรือส่ง Hedging
+              เพื่อลดความเสี่ยงจากคำสั่งที่ยังเปิดอยู่</dd>
+          </div>
+          <div class="term">
+            <dt>License</dt>
+            <dd>สิทธิ์การใช้งานฟังก์ชันและพฤติกรรมของระบบที่แตกต่างกันไปตามบริษัท เช่น ASR, BKP, LKN และ WTK</dd>
+          </div>
+          <div class="term">
+            <dt>Redis</dt>
+            <dd>ระบบจัดเก็บข้อมูลแบบ In-Memory เหมาะกับข้อมูลที่ต้องเข้าถึงรวดเร็วหรือมีอายุสั้น โดยตัวอย่าง
+              <code>SET NX PX 1000</code> คือกำหนดค่าเมื่อยังไม่มี Key และให้หมดอายุใน 1,000 มิลลิวินาที
+            </dd>
+          </div>
+          <div class="term">
+            <dt>Exposure</dt>
+            <dd>ความเสี่ยงจากมูลค่าสินทรัพย์หรือสถานะที่ระบบถืออยู่
+              หากราคาทองเปลี่ยนแปลงผู้ถือความเสี่ยงอาจเกิดกำไรหรือขาดทุน</dd>
+          </div>
+          <div class="term">
+            <dt>Outstanding</dt>
+            <dd>ในบริบท MM คือรายการเปิดค้างที่ยังต้องรับความเสี่ยงระหว่างรอจับคู่ ปิดสถานะ หรือทำ Hedging</dd>
+          </div>
+          <div class="term">
+            <dt>Hedging</dt>
+            <dd>การทำรายการฝั่งตรงข้ามหรือส่งคำสั่งไปยัง Supplier/Partner เพื่อลดความเสี่ยงของสถานะที่เปิดอยู่</dd>
+          </div>
+          <div class="term">
+            <dt>ODD · Online Direct Debit</dt>
+            <dd>การหักเงินออนไลน์จากบัญชีธนาคารที่ลูกค้าเชื่อมกับบริการ ตามคำสั่งชำระเงินที่ระบบส่งไป</dd>
+          </div>
+          <div class="term">
+            <dt>Market / Limit / Mini Order</dt>
+            <dd>รูปแบบของคำสั่งซื้อขายที่ศึกษาใน Classic Gold โดยมีเงื่อนไขเรื่องราคาและขนาดคำสั่งแตกต่างกันตามระบบ</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section class="section" id="reflection">
+        <div class="section-number">05</div>
+        <h2>ปัญหาและบทเรียนที่ได้รับ</h2>
+        <p class="section-subtitle">ข้อสังเกตจากการฝึกงานที่ต้องนำไปปรับวิธีการทำงานต่อ</p>
+        <div class="lesson-list">
+          <article class="lesson">
+            <div class="lesson-num">01</div>
+            <div>
+              <h3>ไม่ควรฝืนทำงานในส่วนที่ยังไม่เข้าใจ</h3>
+              <p>กรณี Audit Logs ทำให้เห็นความสำคัญของการเข้าใจระบบต้นทางก่อนเริ่มลงมือพัฒนา
+                การทำต่อโดยยังไม่เคลียร์คำถามสำคัญอาจทำให้เสียเวลาโดยไม่เกิดผลลัพธ์ตามที่คาดหวัง</p>
+            </div>
+          </article>
+          <article class="lesson">
+            <div class="lesson-num">02</div>
+            <div>
+              <h3>ถามให้ตรงประเด็นและตรวจความเข้าใจกับผู้รู้</h3>
+              <p>คำแนะนำของพี่ไมค์ทำให้กลับมาปรับ Mindset และควรสรุปสิ่งที่เข้าใจ พร้อมระบุจุดที่ไม่มั่นใจก่อนถาม
+                เพื่อให้คำตอบนำไปใช้ต่อได้ทันที</p>
+            </div>
+          </article>
+          <article class="lesson">
+            <div class="lesson-num">03</div>
+            <div>
+              <h3>ไล่ Workflow ก่อนลงรายละเอียดโค้ด</h3>
+              <p>การรู้ลำดับของ Customer → Broker → Payment → MM → Back Office
+                ช่วยให้ระบุหน้าที่และสถานะของแต่ละระบบได้ดีขึ้น จากนั้นจึงตามตรวจโค้ดในส่วนที่สัมพันธ์กับแต่ละขั้น</p>
+            </div>
+          </article>
+          <article class="lesson">
+            <div class="lesson-num">04</div>
+            <div>
+              <h3>แม้เป็นโจทย์ง่าย ก็ควรอธิบายเหตุผลของวิธีที่เลือก</h3>
+              <p>การเปรียบเทียบ for/while และการออกแบบ array/function ก่อนทำโจทย์ 2.2 ช่วยฝึกการตัดสินใจจากลักษณะปัญหา
+                ไม่ใช่เลือกตามความเคยชินเพียงอย่างเดียว</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="next">
+        <div class="section-number">06</div>
+        <h2>ประเด็นที่จะดำเนินการต่อ</h2>
+        <p class="section-subtitle">แนวทางต่อยอดจากงานคงเหลือและประเด็นที่พบในบันทึก (ข้อเสนอสำหรับสัปดาห์ถัดไป)</p>
+        <div class="next">
+          <div class="next-item"><span class="next-dot"></span><span>ตอบ <b>Fail Case ที่เหลือ 12 ข้อ</b> ให้ครบ
+              และระบุเงื่อนไขที่ทำให้แต่ละกรณีเข้าสู่สถานะสำเร็จ/ล้มเหลว</span></div>
+
+          <div class="next-item">
+            <span class="next-dot"></span>
+            <span>
+              <b>ทบทวนและตรวจสอบคำศัพท์พื้นฐานเกี่ยวกับระบบซื้อขายทองคำทั้ง 12 หัวข้อ</b>
+              เพื่อให้เข้าใจความหมาย วิ  ธีการใช้งาน และหาจุดที่บอกคำศัพท์
+              <br><br>
+              <b>คำศัพท์ที่ต้องตรวจสอบ:</b>
+              บาททอง (Bg), กรัม (15.244), กิโลกรัม (65.6),
+              ทอง 96.5% และ 99.99%, CB (Cash Balance),
+              CL (Credit Line / หลักประกัน), Market Order,
+              Ask / Bid, ส่วนต่างราคาที่ยอมรับได้ (5 บาท),
+              Exposure, Hedge และ Settle / Trading Desk
+              <br><br>
+              <b>เป้าหมาย:</b>
+              สามารถอธิบายคำศัพท์ทั้ง 12 หัวข้อด้วยความเข้าใจของตนเอง
+              ระบุแหล่งอ้างอิงได้ และตรวจสอบตัวเลขหรือเงื่อนไขเฉพาะระบบ
+              ก่อนนำไปใช้อธิบาย Workflow
+            </span>
+          </div>
+        </div>
+        <p class="endnote">หมายเหตุ: รายงานนี้เป็นการเรียบเรียงบันทึกการเรียนรู้ ณ วันที่ 20 พฤศจิกายน 2569
+          ไม่ใช่การยืนยันว่า Workflow ทั้งหมดผ่านการทดสอบหรือเป็นเอกสารข้อกำหนด Production</p>
+      </section>
+      <footer class="report-footer"><span>LEAD DEVELOPER · WEEKLY REPORT · WEEK 47 · 16–20 NOV 2026</span><button
+          class="print-btn" onclick="window.print()" aria-label="พิมพ์รายงานหรือบันทึกเป็น PDF"><span
+            aria-hidden="true">⎙</span> พิมพ์ / Save as PDF</button></footer>
+    </main>
+  </div>
+  <script>
+    (function () {
+      const links = [...document.querySelectorAll('.nav a')];
+      const sections = links.map(a => document.getElementById(a.getAttribute('href').slice(1))).filter(Boolean);
+      if (!('IntersectionObserver' in window)) return;
+      const observer = new IntersectionObserver(entries => {
+        const visible = entries.filter(e => e.isIntersecting).sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+        if (visible[0]) { const id = visible[0].target.id; links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + id)); }
+      }, { rootMargin: '-5% 0px -70% 0px', threshold: 0 });
+      sections.forEach(section => observer.observe(section));
+    })();
+  </script>
+</body>
+
+</html>
